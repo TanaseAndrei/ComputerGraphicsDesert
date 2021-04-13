@@ -1,0 +1,161 @@
+
+W	java:S125İ"<This block of commented-out lines of code should be removed.(ÿæÏ“úÿÿÿÿ
+[
+java:S2184ï"DCast one of the operands of this subtraction operation to a "float".(ïıœ¶
+\
+java:S2184¿"ECast one of the operands of this subtraction operation to a "double".(Ø¿
+8
+java:S1659£"!Declare "max" on a separate line.(İ®ú¹
+g	java:S117İ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Îİå‹
+W	java:S125¨"<This block of commented-out lines of code should be removed.(¢ŒË™ÿÿÿÿÿ
+N
+java:S1854N"9Remove this useless assignment to local variable "nlPos".(Ë×ìE
+V
+java:S2184¶"ACast one of the operands of this addition operation to a "float".(®²
+Z
+java:S2184ü"DCast one of the operands of this subtraction operation to a "float".(õò.
+Z
+java:S2184ó"DCast one of the operands of this subtraction operation to a "float".(úÆ(
+_
+java:S2184k"DCast one of the operands of this subtraction operation to a "float".(Èúµğúÿÿÿÿ
+P
+java:S22094"5Change this instance-reference to a static reference.(š¬şüÿÿÿÿ
+¤
+java:S1186†"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(üà¹üûÿÿÿÿ8¿ŞåŒ/
+K
+java:S22093"5Change this instance-reference to a static reference.(ä‚Ä°
+P
+java:S2209Q"5Change this instance-reference to a static reference.(±¥êùÿÿÿÿ
+Q	java:S125İ"<This block of commented-out lines of code should be removed.(çÅ”*
+¤
+java:S1186ş"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( ª¢Ùÿÿÿÿÿ8¿ŞåŒ/
+;
+java:S1659È"Declare "v" on a separate line.(ıíñøÿÿÿÿ
+P
+java:S2209h"5Change this instance-reference to a static reference.(Áîƒ’ıÿÿÿÿ
+n
+java:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(‹¤üüÿÿÿÿ
+R
+java:S1117å";Rename "normals" which hides the field declared at line 23.(ª²÷Ö
+]
+java:S2184š"ACast one of the operands of this addition operation to a "float".(˜¦Èùşÿÿÿÿ
+Z
+java:S2184j"DCast one of the operands of this subtraction operation to a "float".(ÎÎ”»
+>
+java:S1172r"(Remove this unused method parameter "s".(³ÂÉ¨
+]
+java:S2184©"ACast one of the operands of this addition operation to a "float".(×ñ“şÿÿÿÿ
+K
+java:S2209<"5Change this instance-reference to a static reference.(é‰šö
+_
+java:S2184Z"DCast one of the operands of this subtraction operation to a "float".(œÕå©ÿÿÿÿÿ
+K
+java:S2209/"5Change this instance-reference to a static reference.(Â¹ÿõ
+X
+java:S2184°"ACast one of the operands of this addition operation to a "float".(±ÉÓƒ
+M
+java:S1144¼"1Remove this unused private "scaleTerrain" method.(‹ï‘Ôşÿÿÿÿ
+P
+java:S2209,"5Change this instance-reference to a static reference.(·“¼Ïûÿÿÿÿ
+;
+java:S1659È"Declare "n" on a separate line.(ıíñøÿÿÿÿ
+g	java:S117Ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¿Ş´
+K
+java:S22093"5Change this instance-reference to a static reference.(ä‚Ä°
+P
+java:S2209e"5Change this instance-reference to a static reference.(É®Ïşÿÿÿÿ
+`
+java:S2184ñ"DCast one of the operands of this subtraction operation to a "float".(Ëô Àüÿÿÿÿ
+P
+java:S22094"5Change this instance-reference to a static reference.(š¬şüÿÿÿÿ
+O
+java:S1197é"8Move the array designator from the variable to the type.(Ò‹ºá
+_
+java:S3518Ü"CMake sure this expression can't be zero before doing this division.(Ò¾¦Îøÿÿÿÿ
+_
+java:S2184^"DCast one of the operands of this subtraction operation to a "float".(ÎŞ±øøÿÿÿÿ
+]
+java:S2184‹"ACast one of the operands of this addition operation to a "float".(ÜÔñùÿÿÿÿ
+Q
+java:S1854¡":Remove this useless assignment to local variable "slopes".(Ì¨—¹
+Z
+java:S2184‰"DCast one of the operands of this subtraction operation to a "float".(ı—!
+P
+java:S22091"5Change this instance-reference to a static reference.(ÌËàçıÿÿÿÿ
+\
+java:S2184¿"ECast one of the operands of this subtraction operation to a "double".(Ø¿
+K
+java:S1854s"5Remove this useless assignment to local variable "c".(âØ§
+K
+java:S22092"5Change this instance-reference to a static reference.(¶áâï
+?
+java:S1481N"*Remove this unused "nlPos" local variable.(Ë×ìE
+_
+java:S2184^"DCast one of the operands of this subtraction operation to a "float".(ÎŞ±øøÿÿÿÿ
+E
+java:S2140œ")Use "java.util.Random.nextInt()" instead.(ş˜ğïúÿÿÿÿ
+J
+java:S1172L"/Remove this unused method parameter "drawable".(æ‡ÖÌùÿÿÿÿ
+Z
+java:S2184j"DCast one of the operands of this subtraction operation to a "float".(ÎÎ”»
+P
+java:S22095"5Change this instance-reference to a static reference.(ò¥ÿ¶şÿÿÿÿ
+¤
+java:S1186ú"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(­­¢ùÿÿÿÿ8¿ŞåŒ/
+X
+java:S2184£"ACast one of the operands of this addition operation to a "float".(»£òÂ
+>
+java:S1068"(Remove this unused "glut" private field.(ó˜â
+
+java:S1186‚"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õõÆ|8¿ŞåŒ/
+`
+java:S2184ş"DCast one of the operands of this subtraction operation to a "float".(ÓÚî˜ÿÿÿÿÿ
+R	java:S125­"<This block of commented-out lines of code should be removed.(¶ôå€
+`
+java:S2184‚"DCast one of the operands of this subtraction operation to a "float".(´ÖÙıÿÿÿÿ
+]
+java:S2184²"ACast one of the operands of this addition operation to a "float".(ÃÄ­ıÿÿÿÿ
+g	java:S117Ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¼Ç
+i
+java:S1450"SRemove the "glut" field and declare it as a local variable in the relevant methods.(ó˜â
+_
+java:S2184Z"DCast one of the operands of this subtraction operation to a "float".(œÕå©ÿÿÿÿÿ
+l	java:S117â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“·ğıÿÿÿÿ
+l	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß­»Øúÿÿÿÿ
+K
+java:S22097"5Change this instance-reference to a static reference.(©¦ÿ
+_
+java:S2184k"DCast one of the operands of this subtraction operation to a "float".(Èúµğúÿÿÿÿ
+N
+java:S1197è"8Move the array designator from the variable to the type.(ƒé’8
+P
+java:S2209e"5Change this instance-reference to a static reference.(É®Ïşÿÿÿÿ
+`
+java:S3518”"DMake sure "totalAmplitude" can't be zero before doing this division.(ºù¥Óûÿÿÿÿ
+l	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ“€«úÿÿÿÿ
+P
+java:S2209o"5Change this instance-reference to a static reference.(ÛçÍëùÿÿÿÿ
+K
+java:S1854w"5Remove this useless assignment to local variable "c".(’ÖÓĞ
+D
+java:S1905§"(Remove this unnecessary cast to "float".(Ö‹ù°ıÿÿÿÿ
+[
+java:S2184˜"DCast one of the operands of this subtraction operation to a "float".(‰åğâ
+K
+java:S2209-"5Change this instance-reference to a static reference.(ğÔê
+K
+java:S2209;"5Change this instance-reference to a static reference.(åñòõ
+P
+java:S2209d"5Change this instance-reference to a static reference.(ï¢Û†üÿÿÿÿ
+8	java:S131Ş""Add a default case to this switch.(œ·’á
+T	java:S106"9Replace this use of System.out or System.err by a logger.(Š–ê«ÿÿÿÿÿ
+X
+java:S2184"ACast one of the operands of this addition operation to a "float".(†ÑÊ½
+]
+java:S2184§"ACast one of the operands of this addition operation to a "float".(æÃäÿÿÿÿÿ
+P
+java:S2209Q"5Change this instance-reference to a static reference.(±¥êùÿÿÿÿ
+P
+java:S2209U"5Change this instance-reference to a static reference.(Áîƒ’ıÿÿÿÿ
+K
+java:S22092"5Change this instance-reference to a static reference.(¶áâï
