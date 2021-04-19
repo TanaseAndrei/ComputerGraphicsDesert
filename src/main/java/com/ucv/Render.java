@@ -25,7 +25,7 @@ public class Render implements GLEventListener, KeyListener {
     private static final int TER_H = 256;
     private static final int TER_H_W = TER_W / 2;
     private static final int TER_H_H = TER_H / 2;
-    private static final int TER_MAX_H = 60;
+    private static final int TER_MAX_H = 30; //inaltimea maxima a terenului
     private static final int WATER_LVL = (int) (TER_MAX_H * 0.4f);
     private float cy = TER_MAX_H;
     private float ca = 0;
@@ -44,15 +44,15 @@ public class Render implements GLEventListener, KeyListener {
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glEnable(gl.GL_DEPTH_TEST);
 
-        gl.glEnable(gl.GL_LIGHTING);
+        gl.glEnable(gl.GL_LIGHTING); //da enable la lighting
 
         gl.glEnable(gl.GL_LIGHT0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_AMBIENT, new float[]{0.1f, 0.1f, 0.1f, 1}, 0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_SPECULAR, new float[]{0.5f, 0.5f, 0.5f, 1}, 0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_DIFFUSE, new float[]{0.8f, 0.8f, 0.8f, 1}, 0);
-        gl.glEnable(gl.GL_COLOR_MATERIAL);
+        gl.glEnable(gl.GL_COLOR_MATERIAL); //culoare mai naturala si nu desenata
 
-        gl.glShadeModel(gl.GL_SMOOTH);
+        gl.glShadeModel(gl.GL_SMOOTH); //face shader-ul de se misca mai smooth
     }
 
     public void display(GLAutoDrawable drawable) {
@@ -75,7 +75,6 @@ public class Render implements GLEventListener, KeyListener {
 
     private void draw(GLAutoDrawable drawable) {
         float[] lPos = {TER_H_W * cos, -TER_MAX_H * 1.25f, TER_H_H * sin, 1};
-        float[] nlPos = {0, 1, 0};
         glu.gluPerspective(60, 1, 1, 512);
         glu.gluLookAt(csin * cd, cy, ccos * cd, 0, 0, 0, 0, 1, 0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_POSITION, lPos, 0);
@@ -111,39 +110,22 @@ public class Render implements GLEventListener, KeyListener {
         gl.glDisable(gl.GL_BLEND);
     }
 
+    //aflam culoarea in functie de inaltime
     private float[] getColor(float h, float s) {
-        float[] c = {0, 0, 0};
-        float hr = h / ((float) TER_MAX_H);
+        float[] c;
+        float hr = h / ((float) TER_MAX_H); //h are o valoare random intre 0 si 30, impartind la ter_max_h,
+        //avem o valoare mai mica decat 1, ex: h = 20, ter_max_h = 30 => 20/30 = 0.6
 
-        if (hr > 0.85f) {
+        if (hr > 0.75f) { //daca inaltimea terenului este mai mare de 0.75, se adauga o culoare 1.000f, 0.871...
             c = new float[]{
-                    (230 / 255f),
-                    (230 / 255f),
-                    (230 / 255f),
+                    1.000f, 0.871f, 0.678f
             };
-        }
-        if (hr > 0.8f) {
-            float i = ((h / TER_MAX_H) - 0.8f) / 0.05f;
+        } else if (hr > 0.35) { //daca e mai mare de 0.35, se adauga 0.961...
             c = new float[]{
-                    (89 / 255f) * (1f - i) + (230 / 255f) * i,
-                    (125 / 255f) * (1f - i) + (230 / 255f) * i,
-                    (77 / 255f) * (1f - i) + (230 / 255f) * i,
-            };
-        } else if (hr > 0.45f) {
-            c = new float[]{
-                    (89 / 255f),
-                    (125 / 255f),
-                    (77 / 255f),
-            };
-        } else if (hr > 0.38f) {
-            float i = ((h / TER_MAX_H) - 0.38f) / 0.07f;
-            c = new float[]{
-                    (236 / 255f) * (1f - i) + (89 / 255f) * i,
-                    (238 / 255f) * (1f - i) + (125 / 255f) * i,
-                    (182 / 255f) * (1f - i) + (77 / 255f) * i,
+                    0.961f, 0.871f, 0.702f
             };
         } else {
-            c = new float[]{
+            c = new float[]{ //negrul de pe fundul lacului
                     (116 / 255f),
                     (85 / 255f),
                     (51 / 255f),
@@ -158,25 +140,27 @@ public class Render implements GLEventListener, KeyListener {
         System.out.println("Seed: " + r);
 
         terrain = new float[TER_W][TER_H];
-        float[][] slopes = new float[TER_W][TER_H];
+        float[][] slopes;
         colors = new float[TER_W][TER_H][3];
         normals = new float[TER_W][TER_H][3];
 
         for (int x = 0; x < TER_W; x++) {
             for (int z = 0; z < TER_H; z++) {
-                terrain[x][z] = (float) rand.nextFloat();
-                //System.out.println(_terrain[x][z]);
+                terrain[x][z] = rand.nextFloat();
             }
         }
 
-        terrain = generatePerlinNoise(terrain, 7);
-        //_terrain = levelTerrain(_terrain, 1);
-        //_terrain = scaleTerrain(_terrain);
+        terrain = generatePerlinNoise(terrain, 20); //citit despre perlin noise, daca ii dau valoare de 1,
+        //o sa apara forme de triunghi sau ceva de genul. Pentru 3 tot triunghiuri sunt dar sunt mai rare si mai mari.
+        //Pentru 5 sunt mai rare si dau spre munti. Pentru 7 (care e si valoarea initiala a proiectului), da a munti spre deal.
+        //Valoarea de 20 imi da cel mai bine a dune de nisip tipic desertului
         terrain = levelTerrain(terrain, TER_MAX_H);
-        terrain = gausBlur(terrain, 1);
+        terrain = gausBlur(terrain, 5); //e folosit pentru a face mai smooth terrainul, blureaza partile grunjoase, mai bine zis
+        //finiseaza marginile sa fie smooth, daca e valoare mica arata ca fetele cu cosuri si machiate :))) cu denivelari
+        //5 am vazut ca este o valoare foarte buna care da foarte mult a duna de nisip
 
-        slopes = getSlopes(terrain);
-        normals = getNormals(terrain);
+        slopes = getSlopes(terrain); //genereaza valea
+        normals = getNormals(terrain); //normalizeaza terenul
 
         for (int x = 0; x < TER_W; x++) {
             for (int z = 0; z < TER_H; z++) {
@@ -185,15 +169,7 @@ public class Render implements GLEventListener, KeyListener {
         }
     }
 
-    private float[][] scaleTerrain(float[][] src) {
-        for (int x = 0; x < TER_W; x++) {
-            for (int z = 0; z < TER_H; z++) {
-                src[x][z] = (float) (4f * Math.pow(src[x][z] - 0.45f, 3) + 0.4f + 3 * src[x][z]);
-            }
-        }
-        return src;
-    }
-
+    //creeaza panta dambului, dunei
     private float[][] getSlopes(float[][] src) {
         float[][] slopes = new float[src.length][src[0].length];
 
@@ -218,13 +194,13 @@ public class Render implements GLEventListener, KeyListener {
                     count++;
                 }
                 slopes[x][y] = total / ((float) count);
-                //System.out.println(slopes[x][y]);
             }
         }
 
         return slopes;
     }
 
+    //normalizeaza
     private float[][][] getNormals(float[][] src) {
         float[][][] normals = new float[src.length][src[0].length][3];
         for (int x = 1; x < src.length - 1; x++) {
@@ -325,7 +301,9 @@ public class Render implements GLEventListener, KeyListener {
     }
 
     private float[] getNormal(float[][] t) {
-        float[] u = new float[3], v = new float[3], n = new float[3];
+        float[] u = new float[3];
+        float[] v = new float[3];
+        float[] n = new float[3];
         for (int x = 0; x < 3; x++) {
             u[x] = t[1][x] - t[0][x];
         }
@@ -345,26 +323,26 @@ public class Render implements GLEventListener, KeyListener {
 
         for (int x = 0; x < TER_W; x++) {
 
-            int sample_i0 = (x / samplePeriod) * samplePeriod;
-            int sample_i1 = (sample_i0 + samplePeriod) % TER_W; //wrap around
-            float horizontal_blend = (x - sample_i0) * sampleFrequency;
+            int samplei0 = (x / samplePeriod) * samplePeriod;
+            int samplei1 = (samplei0 + samplePeriod) % TER_W; //wrap around
+            float horizontalBlend = (x - samplei0) * sampleFrequency;
 
             for (int z = 0; z < TER_H; z++) {
                 //calculate the vertical sampling indices
-                int sample_j0 = (z / samplePeriod) * samplePeriod;
-                int sample_j1 = (sample_j0 + samplePeriod) % TER_H; //wrap around
-                float vertical_blend = (z - sample_j0) * sampleFrequency;
+                int samplej0 = (z / samplePeriod) * samplePeriod;
+                int samplej1 = (samplej0 + samplePeriod) % TER_H; //wrap around
+                float verticalBlend = (z - samplej0) * sampleFrequency;
 
                 //blend the top two corners
-                float top = interpolate(baseNoise[sample_i0][sample_j0],
-                        baseNoise[sample_i1][sample_j0], horizontal_blend);
+                float top = interpolate(baseNoise[samplei0][samplej0],
+                        baseNoise[samplei1][samplej0], horizontalBlend);
 
                 //blend the bottom two corners
-                float bottom = interpolate(baseNoise[sample_i0][sample_j1],
-                        baseNoise[sample_i1][sample_j1], horizontal_blend);
+                float bottom = interpolate(baseNoise[samplei0][samplej1],
+                        baseNoise[samplei1][samplej1], horizontalBlend);
 
                 //final blend
-                smoothNoise[x][z] = interpolate(top, bottom, vertical_blend);
+                smoothNoise[x][z] = interpolate(top, bottom, verticalBlend);
             }
         }
 
@@ -414,14 +392,13 @@ public class Render implements GLEventListener, KeyListener {
 
     private float[][] levelTerrain(float[][] orig, float scale) {
         float[][] newA = new float[orig.length][orig[0].length];
+        float min = 1;
+        float max = 0;
 
-        float min = 1,
-                max = 0;
-
-        for (int x = 0; x < orig.length; x++) {
+        for (float[] floats : orig) {
             for (int y = 0; y < orig[0].length; y++) {
-                min = orig[x][y] < min ? orig[x][y] : min;
-                max = orig[x][y] > max ? orig[x][y] : max;
+                min = Math.min(floats[y], min);
+                max = Math.max(floats[y], max);
             }
         }
 
@@ -450,7 +427,6 @@ public class Render implements GLEventListener, KeyListener {
                         }
                     }
                 }
-
                 newA[x][y] = num == 0 ? 0 : height / ((float) (num));
             }
         }
@@ -459,22 +435,18 @@ public class Render implements GLEventListener, KeyListener {
     }
 
     private int biggest(int x, int y) {
-        if (x > y)
-            return x;
-        else
-            return y;
+        return Math.max(x,y);
     }
 
     private int smallest(int x, int y) {
-        if (x < y)
-            return x;
-        else
-            return y;
+        return Math.min(x,y);
     }
 
+    //metoda implementata folosind interfata KeyListener
+    //cand e apasat w, se face un cd-- etc.
+    //csin si ccos sunt folosite la linia 79 in gluLookAt
     @Override
     public void keyPressed(KeyEvent e) {
-        //System.out.println(e.getKeyChar());
         switch (e.getKeyChar()) {
             case 'w':
                 cd--;
@@ -494,6 +466,8 @@ public class Render implements GLEventListener, KeyListener {
             case 'e':
                 cy++;
                 break;
+            default:
+                break;
         }
         ca %= 360;
 
@@ -504,19 +478,21 @@ public class Render implements GLEventListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent arg0) {
+        //No usage
     }
 
     @Override
     public void keyTyped(KeyEvent arg0) {
+        //No usage
     }
 
     @Override
     public void dispose(GLAutoDrawable drawable) {
+        //No usage
     }
 
     @Override
     public void reshape(GLAutoDrawable drawable, int arg1, int arg2, int arg3, int arg4) {
+        //No usage
     }
-
-
 }
